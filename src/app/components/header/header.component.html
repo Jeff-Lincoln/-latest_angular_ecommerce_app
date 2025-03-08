@@ -1,32 +1,115 @@
-<header class="bg-white shadow-md fixed w-full top-0 left-0 z-50 transition-all duration-300" id="app-header">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center h-16">
-      <div class="flex items-center group">
-        <a href="/" class="flex items-center space-x-2 hover:opacity-90 transition-all duration-300 transform group-hover:scale-105">
-          <!-- Fixed Image Tag -->
-          <img src="assets/logo_ecom.jpg"
-               class="h-10 w-10 transition-transform duration-300 group-hover:rotate-12"
-               alt="E-commerce Logo">
-
-          <!-- Stylish Branding -->
-          <span class="font-bold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-blue-600">
+<header class="fixed top-0 left-0 w-full z-50 bg-white shadow-lg transition-all duration-300 ease-in-out">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
+    <div class="flex items-center justify-between space-x-4">
+      <!-- Logo and Brand Section -->
+      <div class="flex items-center space-x-3">
+        <a
+          routerLink="/"
+          class="flex items-center group transition-all duration-300 hover:scale-105"
+        >
+          <img
+            src="assets/logo_ecom.jpg"
+            alt="Shopr Logo"
+            class="h-10 w-10 rounded-full shadow-md group-hover:rotate-6 transition-transform"
+          />
+          <span class="ml-2 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-amber-500 to-blue-600 tracking-tight">
             Shopr
           </span>
         </a>
-        <form class="w-full sm:w-auto sm:flex-1 sm:mx-4 mt-2 sm:mt-0">
+      </div>
+
+      <!-- Search Bar -->
+      <div class="flex-grow mx-4 hidden md:block">
+        <div class="relative">
           <input
-          type="text" placeholder="Search for Products"
-          class="bg-gray-100 text-gray-800 px-4 py-2 rounded focus:outline-none focus:ring-2
-          focus:ring-blue-500 focus:ring-opacity-50
-          border
-          w-full max-w-4xl"/>
-        </form>
-
-        <div class="flex items-center space-x-4 mt-4 sm:mt-0 flex-1
-        sm:flex-none">
-        <p>hello Jeff</p>
-
+            type="text"
+            placeholder="Search for Products"
+            class="bg-gray-100 text-gray-800 px-4 py-2 rounded focus:outline-none focus:ring-2
+            focus:ring-blue-500 focus:ring-opacity-50
+            border
+            w-full max-w-4xl"
+          />
+          <mat-icon class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 focus:ring-blue-400 ">search</mat-icon>
         </div>
+      </div>
+
+      <!-- Navigation Icons -->
+      <div class="hidden md:flex items-center space-x-4">
+        <!-- Basket -->
+        <a
+          routerLink="/basket"
+          class="group flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors"
+        >
+          <mat-icon class="group-hover:scale-110 transition-transform">shopping_cart</mat-icon>
+          <span class="font-medium">Basket</span>
+        </a>
+
+        <!-- Login -->
+        <a
+          routerLink="/login"
+          class="group flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors"
+        >
+          <mat-icon class="group-hover:scale-110 transition-transform">account_circle</mat-icon>
+          <span class="font-medium">Login</span>
+        </a>
+
+        <!-- Sign Up Button -->
+        <a
+          routerLink="/signup"
+          class="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors"
+        >
+          Sign Up
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <div class="md:hidden">
+        <button
+          (click)="toggleMobileMenu()"
+          class="text-gray-600 hover:text-blue-600 transition-colors"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu (Responsive Dropdown) -->
+    <div
+      *ngIf="isMobileMenuOpen"
+      class="md:hidden absolute top-full left-0 w-full bg-white shadow-lg animate-slide-down"
+    >
+      <div class="px-4 py-4 space-y-3">
+        <!-- Mobile Search -->
+        <div class="relative mb-4">
+          <input
+            type="text"
+            placeholder="Search for Products"
+            class="w-full px-4 py-2 rounded-full bg-gray-100 focus:bg-white focus:ring-2 focus:ring-blue-300"
+          />
+          <mat-icon class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">search</mat-icon>
+        </div>
+
+        <!-- Mobile Navigation Links -->
+        <a
+          routerLink="/basket"
+          class="block py-2 border-b flex items-center space-x-2"
+        >
+          <mat-icon>shopping_cart</mat-icon>
+          <span>Basket</span>
+        </a>
+        <a
+          routerLink="/login"
+          class="block py-2 border-b flex items-center space-x-2"
+        >
+          <mat-icon>account_circle</mat-icon>
+          <span>Login</span>
+        </a>
+        <a
+          routerLink="/signup"
+          class="block w-full text-center py-2 bg-blue-500 text-white rounded-full"
+        >
+          Sign Up
+        </a>
       </div>
     </div>
   </div>

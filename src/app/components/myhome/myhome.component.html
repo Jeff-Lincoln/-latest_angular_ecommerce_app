@@ -1,0 +1,105 @@
+<div class="container mx-auto px-4 py-8">
+  <section class="text-center">
+    <h1 class="text-4xl font-bold text-gray-800">Welcome to Our Shop</h1>
+    <p class="text-lg text-gray-600 mt-2">
+      Discover amazing products at unbeatable prices.
+    </p>
+    <a
+      routerLink="/categories"
+      class="mt-4 inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+    >
+      Browse Categories
+    </a>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-semibold text-gray-700">Featured Products</h2>
+
+    <div *ngIf="isLoading; else productContent">
+      <p class="text-center text-gray-500 mt-6">Loading products...</p>
+    </div>
+
+    <ng-template #productContent>
+      <div *ngIf="errorMessage; else productGrid" class="text-center text-red-500 mt-6">
+        {{ errorMessage }}
+      </div>
+
+      <ng-template #productGrid>
+        <div *ngIf="products.length > 0; else noProducts" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">
+          <div
+            *ngFor="let product of products"
+            class="border rounded-lg p-4 shadow-md bg-white hover:shadow-lg transition"
+          >
+            <img
+              [src]="product.images && product.images.length ? product.images[0] : 'assets/placeholder.jpg'"
+              alt="{{ product.title }}"
+              class="w-full h-40 object-cover rounded-md"
+            />
+            <h3 class="text-lg font-medium mt-2">{{ product.title }}</h3>
+            <p class="text-gray-600 text-sm truncate">{{ product.description }}</p>
+            <p class="text-xl font-bold mt-2">${{ product.price }}</p>
+            <a
+              [routerLink]="['/product', product.id]"
+              class="block mt-2 text-blue-500 hover:underline"
+            >
+              View Details
+            </a>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template #noProducts>
+        <p class="text-center text-gray-500 mt-6">No products available.</p>
+      </ng-template>
+    </ng-template>
+  </section>
+</div>
+
+
+
+<!-- <div class="container mx-auto px-4 py-8">
+  <section class="text-center">
+    <h1 class="text-4xl font-bold text-gray-800">Welcome to Our Shop</h1>
+    <p class="text-lg text-gray-600 mt-2">
+      Discover amazing products at unbeatable prices.
+    </p>
+    <a
+      routerLink="/categories"
+      class="mt-4 inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+    >
+      Browse Categories
+    </a>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-semibold text-gray-700">Featured Products</h2>
+
+    <div *ngIf="products.length > 0; else loadingOrNoData">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">
+        <div
+          *ngFor="let product of products"
+          class="border rounded-lg p-4 shadow-md bg-white hover:shadow-lg transition"
+        >
+          <img
+            [src]="product.images && product.images.length ? product.images[0] : 'assets/placeholder.jpg'"
+            alt="{{ product.title }}"
+            class="w-full h-40 object-cover rounded-md"
+          />
+          <h3 class="text-lg font-medium mt-2">{{ product.title }}</h3>
+          <p class="text-gray-600 text-sm truncate">{{ product.description }}</p>
+          <p class="text-xl font-bold mt-2">${{ product.price }}</p>
+          <a
+            [routerLink]="['/product', product.id]"
+            class="block mt-2 text-blue-500 hover:underline"
+          >
+            View Details
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #loadingOrNoData>
+      <p class="text-center text-gray-500 mt-6">Loading products or no products available.</p>
+    </ng-template>
+  </section>
+</div> -->
