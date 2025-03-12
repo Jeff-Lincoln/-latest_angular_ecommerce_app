@@ -1,0 +1,21 @@
+<app-product-modal
+  *ngIf="showModal"
+  [product]="product"
+  (closeModal)="closeModal()"
+  class="fixed inset-0 flex items-end justify-center pt-10 z-50">
+</app-product-modal>
+
+
+
+
+
+<!-- <div *ngIf="product; else loading">
+  <h1>{{ product.title }}</h1>
+  <p><strong>Price:</strong> ${{ product.price }}</p>
+  <p>{{ product.description }}</p>
+  <img *ngFor="let img of product.images" [src]="img" alt="{{ product.title }}" width="100">
+</div>
+
+<ng-template #loading>
+  <p>Loading product details...</p>
+</ng-template> -->

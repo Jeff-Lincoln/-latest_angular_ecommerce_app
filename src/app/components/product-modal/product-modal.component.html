@@ -1,0 +1,50 @@
+<!-- Background Overlay -->
+<div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50 transition-opacity duration-300" (click)="close()"></div>
+
+<!-- Modal (Now stylish, well-positioned, and beautiful) -->
+<div class="fixed bottom-0 left-1/2 w-[95%] max-w-3xl h-[80%] bg-white rounded-t-3xl shadow-2xl p-6 overflow-y-auto transform -translate-x-1/2 transition-all duration-500 ease-out z-50 mb-[70px] scale-95 opacity-0"
+     [class.translate-y-full]="!isVisible" [class.scale-100]="isVisible" [class.opacity-100]="isVisible">
+
+  <!-- Close Button -->
+  <button class="absolute top-4 right-4 text-gray-600 hover:text-red-500 text-3xl font-bold transition-all duration-300" (click)="close()">×</button>
+
+  <div *ngIf="product; else loading" class="text-center">
+    <h2 class="text-3xl font-bold text-gray-800">{{ product.title }}</h2>
+    <p class="text-xl font-semibold text-gray-700 mt-2">Price: ${{ product.price }}</p>
+    <p class="text-gray-600 mt-3 leading-relaxed">{{ product.description }}</p>
+
+    <!-- Product Images -->
+    <div class="mt-5 flex flex-wrap justify-center gap-3">
+      <img *ngFor="let img of product.images" [src]="img" alt="{{ product.title }}"
+           class="w-32 h-32 object-cover rounded-lg shadow-lg transition-all duration-300 hover:scale-105">
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <p class="text-center text-xl text-gray-600">Loading product...</p>
+  </ng-template>
+</div>
+
+
+
+<!-- <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center" (click)="close()"></div>
+
+<div class="fixed left-1/2 top-5 w-[90%] max-w-3xl h-[85%] bg-white rounded-2xl shadow-lg p-6 overflow-y-auto transform -translate-x-1/2">
+  <button class="absolute top-4 right-4 text-gray-600 hover:text-red-500 text-2xl font-bold" (click)="close()">×</button>
+
+  <div *ngIf="product; else loading" class="text-center">
+    <h2 class="text-2xl font-bold text-gray-800">{{ product.title }}</h2>
+    <p class="text-lg font-semibold text-gray-700 mt-2">Price: ${{ product.price }}</p>
+    <p class="text-gray-600 mt-3">{{ product.description }}</p>
+
+    <div class="mt-5 flex flex-wrap justify-center gap-2">
+      <img *ngFor="let img of product.images" [src]="img" alt="{{ product.title }}" class="w-24 h-24 object-cover rounded-lg shadow-md">
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <p class="text-center text-lg text-gray-600">Loading product...</p>
+  </ng-template>
+</div>
+
+ -->
